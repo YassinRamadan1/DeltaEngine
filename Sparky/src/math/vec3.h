@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cmath>
 
-namespace Sparky
+namespace sparky
 {
 	namespace math
 	{

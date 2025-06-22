@@ -1,6 +1,14 @@
 #include "window.h"
 
-namespace Sparky
+#ifdef DEBUG
+#define Log(x) std::cout << (x)
+
+#else
+#define Log(x)
+
+#endif
+
+namespace sparky
 {
 	namespace graphics
 	{

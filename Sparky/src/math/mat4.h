@@ -5,7 +5,7 @@
 
 #define PI 3.14159265358979323846f
 
-namespace Sparky
+namespace sparky
 {
 	namespace math
 	{

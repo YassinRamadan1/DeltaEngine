@@ -1,6 +1,6 @@
 #include "vec2.h"
 
-namespace Sparky
+namespace sparky
 {
 	namespace math
 	{

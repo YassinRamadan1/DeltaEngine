@@ -3,18 +3,10 @@
 #include <GL\glew.h>
 #include <GLFW/glfw3.h>
 
-#ifdef DEBUG
-#define Log(x) std::cout << x
-
-#else
-#define Log(x)
-
-#endif
-
 #define MAX_KEYS	500
 #define MAX_BUTTONS	32
 
-namespace Sparky
+namespace sparky
 {
 	namespace graphics
 	{

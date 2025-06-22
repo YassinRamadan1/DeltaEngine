@@ -1,6 +1,6 @@
 #include "mat4.h"
 
-namespace Sparky
+namespace sparky
 {
 	namespace math
 	{
