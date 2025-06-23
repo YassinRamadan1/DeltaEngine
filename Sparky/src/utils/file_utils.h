@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-namespace sparky
+namespace delta
 {
 	std::string readFile(const char* file_path);
 }

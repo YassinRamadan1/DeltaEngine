@@ -3,7 +3,7 @@
 #include "../utils/file_utils.h"
 #include "../math/math.h"
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

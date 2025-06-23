@@ -8,7 +8,7 @@
 
 #endif
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

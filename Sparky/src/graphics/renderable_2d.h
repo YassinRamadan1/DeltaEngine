@@ -6,7 +6,7 @@
 #include "../math/math.h"
 #include "shader.h"
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

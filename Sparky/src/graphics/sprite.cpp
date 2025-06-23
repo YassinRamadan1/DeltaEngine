@@ -1,6 +1,6 @@
 #include "sprite.h"
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

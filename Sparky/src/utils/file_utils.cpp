@@ -1,6 +1,6 @@
 #include "file_utils.h"
 
-namespace sparky
+namespace delta
 {
 	std::string readFile(const char* file_path)
 	{

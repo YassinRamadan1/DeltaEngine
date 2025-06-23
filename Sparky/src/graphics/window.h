@@ -7,7 +7,7 @@
 #define MAX_KEYS	500
 #define MAX_BUTTONS	32
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

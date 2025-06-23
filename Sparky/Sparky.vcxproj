@@ -24,7 +24,7 @@
     <ProjectGuid>{875ef341-7309-4a01-b642-9f657682b301}</ProjectGuid>
     <RootNamespace>Sparky</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Sparky_core</ProjectName>
+    <ProjectName>DeltaEngine_core</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

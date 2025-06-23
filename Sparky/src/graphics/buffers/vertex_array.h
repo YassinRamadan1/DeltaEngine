@@ -3,7 +3,7 @@
 #include <vector>
 #include "vertex_buffer.h"
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

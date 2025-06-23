@@ -1,6 +1,6 @@
 #include "simple_renderer_2d.h"
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

@@ -1,6 +1,6 @@
 #include "batch_renderer_2D.h"
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

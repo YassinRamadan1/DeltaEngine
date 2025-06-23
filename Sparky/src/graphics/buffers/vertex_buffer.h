@@ -2,7 +2,7 @@
 
 #include <GL/glew.h>
 
-namespace sparky
+namespace delta
 {
 	namespace graphics
 	{

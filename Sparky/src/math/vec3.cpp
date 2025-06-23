@@ -1,6 +1,6 @@
 #include "vec3.h"
 
-namespace sparky
+namespace delta
 {
 	namespace math
 	{
