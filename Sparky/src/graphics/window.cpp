@@ -81,6 +81,14 @@ namespace sparky
 
 		void Window::update() const
 		{
+			GLenum error = glGetError();
+			if (error != GL_NO_ERROR)
+			{
+				Log("OpenGL Error");
+				Log(error);
+				Log('\n');
+			}
+
 			glfwSwapBuffers(window_);
 			glfwPollEvents();
 		}
@@ -93,6 +101,11 @@ namespace sparky
 		bool Window::isButtonPressed(int button_code) const
 		{
 			return mouse_buttons_[button_code];
+		}
+
+		math::vec2 Window::getMousePosition() const
+		{
+			return math::vec2(mouse_x_position_, mouse_y_position_);
 		}
 
 		void windowSizeCallback(GLFWwindow* window, int width, int height)

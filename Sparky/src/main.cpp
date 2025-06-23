@@ -1,6 +1,11 @@
 #include "graphics/window.h"
 #include "math/math.h"
 #include "graphics/shader.h"
+#include "graphics/static_sprite.h"
+#include "graphics/sprite.h"
+#include "graphics/simple_renderer_2d.h"
+#include "graphics/batch_renderer_2D.h"
+#include <time.h>
 
 #ifdef DEBUG
 #define Log(x) std::cout << (x)
@@ -9,6 +14,8 @@
 #define Log(x)
 
 #endif
+
+#define BATCH 1
 
 int main()
 {
@@ -25,22 +32,36 @@ int main()
 	Log(glGetString(GL_VERSION));
 	Log('\n');
 
-	GLfloat vertices[] =
-	{
-		1.0f, 0.0f, 
-		-1.0f, 0.0f,
-		0.0f, 1.0f
-	};
+	mat4 ortho = orthographic(0, 16, 0, 9, -1, 1);
 
 	Shader triangle_shader("res/shaders/triangle.vert", "res/shaders/triangle.frag");
-	unsigned int vao, vbo;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(0));
-	glEnableVertexAttribArray(0);
+	triangle_shader.enable();
+	triangle_shader.setMat4f("proj", false, ortho);
+	
+	srand(time(0));
+	std::vector<Renderable2D*> sprites;
+#if BATCH
+	BatchRenderer2D renderer;
+#else
+	SimpleRenderer2D renderer;
+#endif
+
+	for(float x = 0; x < 16.0; x += 0.05)
+		for (float y = 0; y < 9; y += 0.05)
+		{
+			sprites.push_back(new
+#if BATCH
+				Sprite
+#else
+				StaticSprite
+#endif
+				(vec3(x, y, 0), vec2(0.04, 0.04), vec4(rand() % 1000 / 1000.0, rand() % 1000 / 1000.0, rand() % 1000 / 1000.0, 1)
+#if !BATCH		
+					, triangle_shader
+#endif
+					));
+		}
+	
 
 	while (!window.isClosed())
 	{
@@ -49,10 +70,16 @@ int main()
 		if (window.isKeyPressed(GLFW_KEY_ESCAPE))
 			window.close();
 
+#if BATCH
+		renderer.begin();
+#endif
+		for(int i = 0; i< sprites.size(); i++)
+			renderer.submit(sprites[i]);
+#if BATCH
+		renderer.end();
+#endif
+		renderer.flush();
 
-		triangle_shader.enable();
-		triangle_shader.set4f("color", vec4(1.0f));
-		glDrawArrays(GL_TRIANGLES, 0, 3);
 		window.update();
 	}
 

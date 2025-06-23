@@ -2,6 +2,7 @@
 #include <iostream>
 #include <GL\glew.h>
 #include <GLFW/glfw3.h>
+#include "../math/math.h"
 
 #define MAX_KEYS	500
 #define MAX_BUTTONS	32
@@ -30,6 +31,7 @@ namespace sparky
 			inline int getHeight() const { return height_; }
 			bool isKeyPressed(int key_code) const;
 			bool isButtonPressed(int button_code) const;
+			math::vec2 getMousePosition() const;
 		private:
 
 			// you should not make your friend functions static member functions of the class 
