@@ -42,7 +42,7 @@ namespace delta
 			glfwSetKeyCallback(window_, keyCallback);
 			glfwSetCursorPosCallback(window_, mousePositionCallback);
 			glfwSetMouseButtonCallback(window_, mouseButtonCallback);
-
+			glfwSwapInterval(0);
 			for (int i = 0; i < MAX_KEYS; i++)
 			{
 				keyboard_keys_[i] = false;

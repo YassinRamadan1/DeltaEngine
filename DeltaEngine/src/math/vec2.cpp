@@ -10,12 +10,12 @@ namespace delta
 			this->x = 0.0f, this->y = 0.0f;
 		}
 
-		vec2::vec2(const float& v)
+		vec2::vec2(float v)
 		{
 			this->x = this->y = v;
 		}
 
-		vec2::vec2(const float& x, const float& y)
+		vec2::vec2(float x, float y)
 		{
 			this->x = x, this->y = y;
 		}

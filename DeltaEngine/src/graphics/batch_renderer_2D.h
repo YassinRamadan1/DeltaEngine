@@ -32,6 +32,7 @@ namespace delta
 			~BatchRenderer2D();
 			void begin();
 			void submit(Renderable2D* object) override;
+			void submit(const std::vector<Renderable2D*>& objects);
 			void end();
 			void flush() override;
 		};

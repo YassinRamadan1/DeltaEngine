@@ -36,11 +36,11 @@ namespace delta
 
 			// you should not make your friend functions static member functions of the class 
 			// because GLFW expects C-style function pointers (not member functions).
-			friend static void windowSizeCallback(GLFWwindow* window, int width, int height);
-			friend static void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
-			friend static void keyCallback(GLFWwindow* window, int key_code, int scan_code, int action, int mods);
-			friend static void mousePositionCallback(GLFWwindow* window, double x_position, double y_position);
-			friend static void mouseButtonCallback(GLFWwindow* window, int button_code, int action, int mods);
+			friend void windowSizeCallback(GLFWwindow* window, int width, int height);
+			friend void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
+			friend void keyCallback(GLFWwindow* window, int key_code, int scan_code, int action, int mods);
+			friend void mousePositionCallback(GLFWwindow* window, double x_position, double y_position);
+			friend void mouseButtonCallback(GLFWwindow* window, int button_code, int action, int mods);
 		};
 	}
 }

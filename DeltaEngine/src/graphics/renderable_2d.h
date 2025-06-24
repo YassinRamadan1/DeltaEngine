@@ -13,7 +13,7 @@ namespace delta
 		struct Vertex
 		{
 			math::vec3 position_;
-			math::vec4 color_;
+			unsigned int color_;
 		};
 
 		class Renderable2D

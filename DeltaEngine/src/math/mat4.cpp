@@ -29,13 +29,18 @@ namespace delta
 
 		mat4& mat4::operator *=(const mat4& other)
 		{
-			mat4 mat;
+			float data[16];
 
 			for (int i = 0; i < 4; i++)
 				for (int j = 0; j < 4; j++)
+				{
+					data[j * 4 + i] = 0;
 					for (int k = 0; k < 4; k++)
-						mat.data[j * 4 + i] += this->data[k * 4 + i] * other.data[j * 4 + k];
-			return mat;
+						data[j * 4 + i] += this->data[k * 4 + i] * other.data[j * 4 + k];
+				}
+			
+			memcpy(this->data, data, 16 * 4);
+			return *this;
 		}
 	}
 }

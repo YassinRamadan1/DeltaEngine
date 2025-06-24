@@ -32,7 +32,7 @@ namespace delta
 			vao_ = new VertexArray();
 			ibo_ = new IndexBuffer(indices, 6);
 			vao_->addBuffer(new VertexBuffer(vertices, 12, 3), 0);
-			vao_->addBuffer(new VertexBuffer(colors, 16, 4), 1);
+			vao_->addBuffer(new VertexBuffer(colors, 16, 4), 4);
 		}
 
 		StaticSprite::~StaticSprite()

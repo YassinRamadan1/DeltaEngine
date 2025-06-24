@@ -17,8 +17,8 @@ namespace delta
 			};
 
 			vec2();
-			vec2(const float& v);
-			vec2(const float& x, const float& y);
+			vec2(float v);
+			vec2(float x, float y);
 			vec2& operator+=(const vec2& other);
 			vec2& operator-=(const vec2& other);
 			vec2& operator*=(const vec2& other);

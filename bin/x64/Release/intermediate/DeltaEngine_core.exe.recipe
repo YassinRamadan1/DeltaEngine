@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\dev\DeltaEngine\bin\x64\Debug\DeltaEngine_core.exe</FullPath>
+      <FullPath>C:\dev\DeltaEngine\bin\x64\Release\DeltaEngine_core.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

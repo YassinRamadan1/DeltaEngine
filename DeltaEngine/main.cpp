@@ -1,10 +1,12 @@
-#include "graphics/window.h"
-#include "math/math.h"
-#include "graphics/shader.h"
-#include "graphics/static_sprite.h"
-#include "graphics/sprite.h"
-#include "graphics/simple_renderer_2d.h"
-#include "graphics/batch_renderer_2D.h"
+#include "src/graphics/window.h"
+#include "src/math/math.h"
+#include "src/graphics/shader.h"
+#include "src/graphics/static_sprite.h"
+#include "src/graphics/sprite.h"
+#include "src/graphics/simple_renderer_2d.h"
+#include "src/graphics/batch_renderer_2D.h"
+#include "src/utils/timer.h"
+
 #include <time.h>
 
 #ifdef DEBUG
@@ -31,7 +33,7 @@ int main()
 
 	Log(glGetString(GL_VERSION));
 	Log('\n');
-
+	Timer timer;
 	mat4 ortho = orthographic(0, 16, 0, 9, -1, 1);
 
 	Shader triangle_shader("res/shaders/triangle.vert", "res/shaders/triangle.frag");
@@ -62,25 +64,34 @@ int main()
 					));
 		}
 	
-
+	Timer time;
+	int count = 0;
 	while (!window.isClosed())
 	{
+		count++;
 		window.clear();
 
 		if (window.isKeyPressed(GLFW_KEY_ESCAPE))
 			window.close();
 
+		timer.reset();
 #if BATCH
 		renderer.begin();
 #endif
-		for(int i = 0; i< sprites.size(); i++)
-			renderer.submit(sprites[i]);
+		//for(int i = 0; i< sprites.size(); i++)
+			renderer.submit(sprites);
 #if BATCH
 		renderer.end();
 #endif
 		renderer.flush();
-
 		window.update();
+		if (time.elapsed() > 1.0f)
+		{
+			printf("%d fps\n", count);
+			count = 0;
+			time.reset();
+		}
+		//printf("%f ms\n", timer.elapsed());
 	}
 
 	return 0;
