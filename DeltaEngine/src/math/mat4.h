@@ -40,10 +40,21 @@ namespace delta
 
 		inline vec4 operator *(const mat4& left, const vec4& right)
 		{
-			return vec4(dot(vec4(left.data[0], left.data[4], left.data[8], left.data[12]), right),
+			return vec4(
+				dot(vec4(left.data[0], left.data[4], left.data[8], left.data[12]), right),
 				dot(vec4(left.data[1], left.data[5], left.data[9], left.data[13]), right),
 				dot(vec4(left.data[2], left.data[6], left.data[10], left.data[14]), right),
-				dot(vec4(left.data[3], left.data[7], left.data[11], left.data[15]), right));
+				dot(vec4(left.data[3], left.data[7], left.data[11], left.data[15]), right)
+			);
+		}
+		
+		inline vec3 operator *(const mat4& left, const vec3& right)
+		{
+			return vec3(
+				dot(vec3(left.data[0], left.data[4], left.data[8]), right) + left.data[12],
+				dot(vec3(left.data[1], left.data[5], left.data[9]), right) + left.data[13],
+				dot(vec3(left.data[2], left.data[6], left.data[10]), right) + left.data[14]
+			);
 		}
 
 		inline mat4 transpose(const mat4& matrix)

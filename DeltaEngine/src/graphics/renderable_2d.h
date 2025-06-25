@@ -5,6 +5,7 @@
 #include "buffers/vertex_array.h"
 #include "../math/math.h"
 #include "shader.h"
+#include "renderer_2d.h"
 
 namespace delta
 {
@@ -23,6 +24,9 @@ namespace delta
 			math::vec2 size_;
 			math::vec3 position_;
 			math::vec4 color_;
+		protected:
+
+			Renderable2D() { }
 		public:
 
 			Renderable2D(math::vec3 position, math::vec2 size, math::vec4 color) 
@@ -30,6 +34,10 @@ namespace delta
 			{ }
 
 			virtual ~Renderable2D() = default;
+			virtual void submit(Renderer2D* renderer) 
+			{
+				renderer->submit(this);
+			}
 
 			inline const math::vec2& getSize() const { return size_; }
 			inline const math::vec3& getPosition() const { return position_; }

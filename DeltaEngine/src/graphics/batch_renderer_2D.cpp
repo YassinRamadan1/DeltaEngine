@@ -1,4 +1,5 @@
 #include "batch_renderer_2D.h"
+#include "renderable_2d.h"
 
 namespace delta
 {
@@ -39,6 +40,11 @@ namespace delta
 			glBindVertexArray(vao_);
 			glBindBuffer(GL_ARRAY_BUFFER, vbo_);
 			buffer_ = (Vertex*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+			GLenum error;
+			if ((error = glGetError()) != GL_NO_ERROR)
+			{
+				std::cout << error << '\n';
+			}
 		}
 
 		void BatchRenderer2D::submit(Renderable2D* object)
@@ -46,22 +52,23 @@ namespace delta
 			const math::vec2& size = object->getSize();
 			const math::vec3& position = object->getPosition();
 			const math::vec4& color = object->getColor();
+			const math::mat4& matrix = transformation_stack_.back();
 			unsigned char red = color.r * 255.0, green = color.g * 255.0, blue = color.b * 255.0, alpha = color.a * 255.0;
 			unsigned int c = (red | (green << 8) | (blue << 16) | (alpha << 24));
 
-			buffer_->position_ = position;
+			buffer_->position_ = matrix * position;
 			buffer_->color_ = c;
 			buffer_++;
-
-			buffer_->position_.x = position.x + size.x, buffer_->position_.y = position.y, buffer_->position_.z = position.z;
+								
+			buffer_->position_ = matrix * math::vec3(position.x + size.x, position.y, position.z);
 			buffer_->color_ = c;
 			buffer_++;
-		
-			buffer_->position_.x = position.x + size.x, buffer_->position_.y = position.y + size.y, buffer_->position_.z = position.z;
+						
+			buffer_->position_ = matrix * math::vec3(position.x + size.x, position.y + size.y, position.z);
 			buffer_->color_ = c;
 			buffer_++;
-
-			buffer_->position_.x = position.x, buffer_->position_.y = position.y + size.y, buffer_->position_.z = position.z;
+								
+			buffer_->position_ = matrix * math::vec3(position.x, position.y + size.y, position.z);
 			buffer_->color_ = c;
 			buffer_++;
 
@@ -70,6 +77,7 @@ namespace delta
 
 		void BatchRenderer2D::submit(const std::vector<Renderable2D*>& objects)
 		{
+			const math::mat4& matrix = transformation_stack_.back();
 			for (int i = 0; i < objects.size(); i++)
 			{
 				const math::vec2& size = objects[i]->getSize();
@@ -78,19 +86,19 @@ namespace delta
 				unsigned char red = color.r * 255.0, green = color.g * 255.0, blue = color.b * 255.0, alpha = color.a * 255.0;
 				unsigned int c = (red | (green << 8) | (blue << 16) | (alpha << 24));
 
-				buffer_->position_.x = position.x, buffer_->position_.y = position.y, buffer_->position_.z = position.z;
+				buffer_->position_ = matrix * position;
 				buffer_->color_ = c;
 				buffer_++;
 
-				buffer_->position_.x = position.x + size.x, buffer_->position_.y = position.y, buffer_->position_.z = position.z;
+				buffer_->position_ = matrix * math::vec3(position.x + size.x, position.y, position.z);
 				buffer_->color_ = c;
 				buffer_++;
 
-				buffer_->position_.x = position.x + size.x, buffer_->position_.y = position.y + size.y, buffer_->position_.z = position.z;
+				buffer_->position_ = matrix * math::vec3(position.x + size.x, position.y + size.y, position.z);
 				buffer_->color_ = c;
 				buffer_++;
 
-				buffer_->position_.x = position.x, buffer_->position_.y = position.y + size.y, buffer_->position_.z = position.z;
+				buffer_->position_ = matrix * math::vec3(position.x, position.y + size.y, position.z);
 				buffer_->color_ = c;
 				buffer_++;
 

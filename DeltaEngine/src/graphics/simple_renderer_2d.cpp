@@ -1,4 +1,5 @@
 #include "simple_renderer_2d.h"
+#include "renderable_2d.h"
 
 namespace delta
 {
@@ -7,6 +8,13 @@ namespace delta
 		void SimpleRenderer2D::submit(Renderable2D* object)
 		{
 			render_queue_.push_back(object);
+		}
+
+		void SimpleRenderer2D::submit(const std::vector<Renderable2D*>& objects)
+		{
+			//render_queue_.insert(render_queue_.end(), objects.begin(), objects.end());
+			for (int i = 0; i < objects.size(); i++)
+				render_queue_.push_back(objects[i]);
 		}
 
 		void SimpleRenderer2D::flush()
