@@ -12,7 +12,7 @@ namespace delta
 			IndexBuffer* ibo_;
 		public:
 
-			StaticSprite(math::vec3 position, math::vec2 size, math::vec4 color, Shader& shader);
+			StaticSprite(math::vec3 position, math::vec2 size, math::vec4 color, Shader& shader, Texture* texture = nullptr);
 			~StaticSprite();
 
 			inline const Shader& getShader() const { return shader_; }

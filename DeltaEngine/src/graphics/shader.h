@@ -21,7 +21,7 @@ namespace delta
 			void enable() const;
 			void disable() const;
 
-
+			void set1iv(const GLchar* uniform_name, unsigned int count, int* v) const;
 			void set1i(const GLchar* uniform_name, GLint v) const;
 			void set1f(const GLchar* uniform_name, GLfloat v) const;
 			

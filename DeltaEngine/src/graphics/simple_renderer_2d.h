@@ -13,7 +13,6 @@ namespace delta
 
 			SimpleRenderer2D() = default;
 			void submit(Renderable2D* object) override;
-			void submit(const std::vector<Renderable2D*>& objects) override;
 			void flush() override;
 		};
 	}

@@ -102,6 +102,11 @@ namespace delta
 			return glGetUniformLocation(shader_program_id_, uniform_name);
 		}
 
+		void Shader::set1iv(const GLchar* uniform_name, unsigned int count, int* v) const
+		{
+			glUniform1iv(getUniformLocation(uniform_name), count, v);
+		}
+
 		void Shader::set1i(const GLchar* uniform_name, GLint v) const
 		{
 			glUniform1i(getUniformLocation(uniform_name), v);

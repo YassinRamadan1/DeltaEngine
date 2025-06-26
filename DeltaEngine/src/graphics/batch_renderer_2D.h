@@ -15,7 +15,7 @@ namespace delta
 #define SHADER_VERTEX_INDEX				0
 #define SHADER_NORMAL_INDEX				1
 #define SHADER_TEXTURE_COORDINATE_INDEX 2
-#define SHADER_TEXTURE_ID_INDEX			3
+#define SHADER_TEXTURE_SLOT_INDEX		3
 #define SHADER_COLOR_INDEX				4
 
 		class BatchRenderer2D : public Renderer2D
@@ -26,13 +26,14 @@ namespace delta
 
 			IndexBuffer* ibo_;
 			Vertex* buffer_;
+
+			GLuint texture_slots_[32];
 		public:
 
 			BatchRenderer2D();
 			~BatchRenderer2D();
 			void begin() override;
 			void submit(Renderable2D* object) override;
-			void submit(const std::vector<Renderable2D*>& objects) override;
 			void end() override;
 			void flush() override;
 		};

@@ -4,8 +4,8 @@ namespace delta
 {
 	namespace graphics
 	{
-		StaticSprite::StaticSprite(math::vec3 position, math::vec2 size, math::vec4 color, Shader& shader)
-			: Renderable2D(position, size, color), shader_(shader)
+		StaticSprite::StaticSprite(math::vec3 position, math::vec2 size, math::vec4 color, Shader& shader, Texture* texture)
+			: Renderable2D(position, size, color, texture), shader_(shader)
 		{
 			GLfloat vertices[] =
 			{
@@ -23,6 +23,14 @@ namespace delta
 				color_.r, color_.g, color_.b, color_.a
 			};
 
+			GLfloat texture_coords[] =
+			{
+				0.0, 0.0,
+				1.0, 0.0,
+				1.0, 1.0,
+				0.0, 1.0
+			};
+
 			GLuint indices[] =
 			{
 				0, 1, 2,
@@ -32,6 +40,7 @@ namespace delta
 			vao_ = new VertexArray();
 			ibo_ = new IndexBuffer(indices, 6);
 			vao_->addBuffer(new VertexBuffer(vertices, 12, 3), 0);
+			vao_->addBuffer(new VertexBuffer(texture_coords, 8, 2), 2);
 			vao_->addBuffer(new VertexBuffer(colors, 16, 4), 4);
 		}
 

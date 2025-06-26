@@ -57,6 +57,8 @@ namespace delta
 			{
 				Log("Failed to initialize glew\n");
 			}
+
+			glEnable(GL_FRAMEBUFFER_SRGB);
 		}
 
 		Window::~Window()

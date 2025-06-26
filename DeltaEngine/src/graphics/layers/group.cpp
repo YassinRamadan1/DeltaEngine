@@ -5,8 +5,7 @@ namespace delta
 	namespace graphics
 	{
 		Group::Group(math::mat4 model_matrix)
-		: model_matrix_(model_matrix)
-		{ }
+		: model_matrix_(model_matrix) { }
 
 		void Group::add(Renderable2D* object)
 		{

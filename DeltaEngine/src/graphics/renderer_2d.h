@@ -46,7 +46,6 @@ namespace delta
 
 			virtual void begin() { }
 			virtual void submit(Renderable2D* object) = 0;
-			virtual void submit(const std::vector<Renderable2D*>& objects) = 0;
 			virtual void end() { }
 			virtual void flush() = 0;
 		};
